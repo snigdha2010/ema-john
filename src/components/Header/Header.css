@@ -1,0 +1,17 @@
+.header img{
+   height: 80px;
+   display: block;
+   margin: auto;
+}
+nav{
+    background-color: black;
+    padding: 10px;
+}
+nav a{
+    color:white;
+    padding: 10px;
+    text-decoration: none;
+}
+nav a:hover {
+    background-color: rebeccapurple;
+}
