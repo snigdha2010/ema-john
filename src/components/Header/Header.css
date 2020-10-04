@@ -7,11 +7,11 @@ nav{
     background-color: black;
     padding: 10px;
 }
-nav a{
+.a{
     color:white;
     padding: 10px;
     text-decoration: none;
 }
-nav a:hover {
+.a:hover {
     background-color: rebeccapurple;
 }
