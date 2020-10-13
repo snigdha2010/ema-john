@@ -14,6 +14,7 @@ import ReviewItem from './components/ReviewItem/ReviewItem';
 import Shipment from './components/Shipment/Shipment';
 import LogIn from './components/LogIn/LogIn';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import Inventory from './components/Inventory/Inventory';
 
 export const UserContext = createContext()
 
@@ -42,6 +43,9 @@ function App() {
         <PrivateRoute path = '/shipment'>
           <Shipment/>
         </PrivateRoute>
+        <Route path='/inventory'>
+          <Inventory/>
+        </Route>
         <Route path="*">
             <NotFound></NotFound>
         </Route>

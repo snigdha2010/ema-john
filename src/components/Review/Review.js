@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { getDatabaseCart, processOrder, removeFromDatabaseCart } from '../../utilities/databaseManager';
-import fakeData from '../../fakeData';
 import CartReview from '../CartReview/CartReview';
 import Cart from '../Cart/Cart';
 import gify from '../../images/giphy.gif';
@@ -12,13 +11,35 @@ const Review = () => {
     const history = useHistory();
     useEffect(() => {
      const database = getDatabaseCart()
-     const keys = Object.keys(database)
-    const count = keys.map(key =>{
-        const product = fakeData.find(pd =>pd.key===key)
-        product.quantity = database[key];
-        return product
-    }) ;
-     setItem(count)
+      const keys = Object.keys(database)
+      
+      fetch('http://localhost:5000/getProductsByKeys',{
+        method:'POST',
+        headers:{
+        "Content-type": "application/json"
+        },
+        body: JSON.stringify(keys)
+      })
+      .then(res=> res.json())
+      .then(data => {
+          setItem(data)
+      })
+      
+    //   fetch('http://localhost:5000/getProductsByKeys',{
+    //       method: 'POST',
+    //       headers: {
+    //           'Consten-Type' : 'application/json'
+    //       },
+    //       body: JSON.stringify(keys)
+    //   })
+    //   .then(res => res.json())
+    //   .then(data => setItem(data))
+    // const count = keys.map(key =>{
+    //     const product = fakeData.find(pd =>pd.key===key)
+    //     product.quantity = database[key];
+    //     return product
+    // }) ;
+    //  setItem(count)
     },[])
    
     const handleRemove = (key) =>{
@@ -30,7 +51,6 @@ const Review = () => {
     const handlePrpceedCheckout = () =>{
         setOrderPlace(true)
         setItem([])
-        processOrder()
         history.push('/shipment')
     }
      
