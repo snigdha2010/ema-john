@@ -12,8 +12,9 @@ const Review = () => {
     useEffect(() => {
      const database = getDatabaseCart()
       const keys = Object.keys(database)
+      console.log(keys)
       
-      fetch('http://localhost:5000/getProductsByKeys',{
+      fetch('https://mysterious-sierra-04525.herokuapp.com/getProductsByKeys',{
         method:'POST',
         headers:{
         "Content-type": "application/json"
@@ -24,22 +25,7 @@ const Review = () => {
       .then(data => {
           setItem(data)
       })
-      
-    //   fetch('http://localhost:5000/getProductsByKeys',{
-    //       method: 'POST',
-    //       headers: {
-    //           'Consten-Type' : 'application/json'
-    //       },
-    //       body: JSON.stringify(keys)
-    //   })
-    //   .then(res => res.json())
-    //   .then(data => setItem(data))
-    // const count = keys.map(key =>{
-    //     const product = fakeData.find(pd =>pd.key===key)
-    //     product.quantity = database[key];
-    //     return product
-    // }) ;
-    //  setItem(count)
+    
     },[])
    
     const handleRemove = (key) =>{

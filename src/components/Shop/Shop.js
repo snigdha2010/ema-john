@@ -7,22 +7,24 @@ import { Link } from 'react-router-dom';
 
 const Shop = () => {
    
-    
+    document.title = "Shope"
   
    const [products, setProducts] = useState([]);
    const [cart,setCart] = useState([]);
-
+   const [search, setSearch] = useState('');
+    console.log(search)
     useEffect(()=>{
-        fetch('http://localhost:5000/products')
+        fetch('http://localhost:5000/products?search='+search)
         .then(res => res.json())
         .then(data => setProducts(data))
-    },[])
+    },[search])
+    console.log(products)
 
    useEffect(() => {
     const currentData = getDatabaseCart();
     const productKeys = Object.keys(currentData)
 
-    fetch('http://localhost:5000/getProductsByKeys',{
+    fetch('https://mysterious-sierra-04525.herokuapp.com/getProductsByKeys',{
         method:'POST',
         headers:{
         "Content-type": "application/json"
@@ -61,6 +63,9 @@ const Shop = () => {
        }
        addToDatabaseCart(product.key,count)
        setCart(newCart)
+   }
+   const handleSearch = (e)=>{
+       setSearch(e.target.value)
 
    }
 
@@ -68,7 +73,8 @@ const Shop = () => {
     return (
       <div className='shop-container'>
         <div className='product-container' >
-            {
+            <input type="text" onBlur={handleSearch} className='product-search' placeholder='seach product'/>
+            {products &&
              products.map(pd =>
             <Product showButton={true}
              key={pd.key} product={pd}

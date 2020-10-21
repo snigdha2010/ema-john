@@ -8,7 +8,7 @@ const ReviewItem = () => {
     const {id} = useParams();  
     const [ product , setProduct ] = useState({});
     useEffect(()=>{
-       fetch('http://localhost:5000/product/'+id)
+       fetch('https://mysterious-sierra-04525.herokuapp.com/product/'+id)
        .then(res => res.json())
        .then(data =>setProduct(data))
     },[id])

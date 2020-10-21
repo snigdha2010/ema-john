@@ -12,6 +12,7 @@ const Header = () => {
                <nav>
                    <Link className='a' to="/shop">Shop</Link>
                    <Link className='a' to="/review">Order Review</Link>
+                   <Link className='a' to ='/shipment'>Shipment</Link>
                    <Link className='a' to="/inventory">Manage Inventory Here</Link>
                 <button  onClick={()=>setSignedInUser({})}>Sign out</button>
                </nav>

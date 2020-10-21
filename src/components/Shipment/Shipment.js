@@ -3,17 +3,29 @@ import './Shipment.css';
 import { useForm } from "react-hook-form";
 import { UserContext } from '../../App';
 import { getDatabaseCart, processOrder } from '../../utilities/databaseManager';
+import ProcessPayment from '../../ProcessPayment/ProcessPayment';
+import { useState } from 'react';
 
 const Shipment = () => {
     const { register, handleSubmit, watch, errors } = useForm();
 
     const [signedInUser, setSignedInUser] = useContext(UserContext);
+    const [shippingdata, setShippingData] = useState(null);
     const onSubmit = data => {
+     setShippingData(data)
+    }
+    const handlePaymentSuccess = paymentId =>{
         const savedCart = getDatabaseCart();
 
-        const orderDetails = { ...signedInUser, products: savedCart, shipment: data , orderTime : new Date() }
+        const orderDetails = {
+             ...signedInUser, 
+            products: savedCart, 
+            shipment: shippingdata , 
+            orderTime : new Date(),
+            paymentId
+         }
         console.log(orderDetails, savedCart)
-        fetch('http://localhost:5000/addOrder',{
+        fetch('https://mysterious-sierra-04525.herokuapp.com/addOrder',{
             method: 'POST',
             headers: {
                 'Content-Type' : 'application/json'
@@ -25,16 +37,17 @@ const Shipment = () => {
             console.log("mm",data)
             if(data){
             processOrder();
-            alert('Your OrderSuccessful')
             }
         })
-
     }
+   
   
     return (
-        <div>
+        <div className= 'row'>
+        <div style={{display: shippingdata? 'none':"block"}} className = 'col-md-6'>
+                
             This is Shipment!!
-            <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
             <input name="name" defaultValue={signedInUser.name} ref={register({ required: true })} placeholder="Your Name" />
             {errors.name && <span className="error">Name is required</span>}
             <br/>
@@ -46,10 +59,13 @@ const Shipment = () => {
             <br/>
             <input name="phone" ref={register({ required: true })}  placeholder="Your Phone Number"/>
             {errors.phone && <span className="error">Phone Number is required</span>}
-            
-      <input type="submit" />
+            <input type="submit" />
     </form>
-        </div>
+    </div>
+    <div style={{display: shippingdata? 'block':'none'}} className='col-md-6'>
+        <ProcessPayment handlePayment = {handlePaymentSuccess} ></ProcessPayment>
+    </div>
+</div>
     );
 };
 
