@@ -14,7 +14,7 @@ const Review = () => {
       const keys = Object.keys(database)
       console.log(keys)
       
-      fetch('https://mysterious-sierra-04525.herokuapp.com/getProductsByKeys',{
+      fetch('https://lit-brushlands-59071.herokuapp.com/getProductsByKeys',{
         method:'POST',
         headers:{
         "Content-type": "application/json"

@@ -25,7 +25,7 @@ const Shipment = () => {
             paymentId
          }
         console.log(orderDetails, savedCart)
-        fetch('https://mysterious-sierra-04525.herokuapp.com/addOrder',{
+        fetch('https://lit-brushlands-59071.herokuapp.com/addOrder',{
             method: 'POST',
             headers: {
                 'Content-Type' : 'application/json'

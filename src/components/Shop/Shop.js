@@ -12,9 +12,8 @@ const Shop = () => {
    const [products, setProducts] = useState([]);
    const [cart,setCart] = useState([]);
    const [search, setSearch] = useState('');
-    console.log(search)
     useEffect(()=>{
-        fetch('http://localhost:5000/products?search='+search)
+        fetch('https://lit-brushlands-59071.herokuapp.com/products?search='+search)
         .then(res => res.json())
         .then(data => setProducts(data))
     },[search])
@@ -24,7 +23,7 @@ const Shop = () => {
     const currentData = getDatabaseCart();
     const productKeys = Object.keys(currentData)
 
-    fetch('https://mysterious-sierra-04525.herokuapp.com/getProductsByKeys',{
+    fetch('https://lit-brushlands-59071.herokuapp.com/getProductsByKeys',{
         method:'POST',
         headers:{
         "Content-type": "application/json"
@@ -89,7 +88,6 @@ const Shop = () => {
                </Link> 
                 
                 </Cart>}
-
         </div>
         </div>
     );

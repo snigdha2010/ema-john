@@ -5,7 +5,7 @@ const Inventory = () => {
 
     const handleAddProduct = ( ) =>{
         const product = {}
-        fetch('https://mysterious-sierra-04525.herokuapp.com/addProduct',{
+        fetch('https://lit-brushlands-59071.herokuapp.com/addProduct',{
             method:'POST',
             headers:{
             "Content-type": "application/json"

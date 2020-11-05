@@ -85,7 +85,7 @@ const LogIn = () => {
         history.replace(from); 
         }
     }
-   console.log(user.isSignedIn)
+  // console.log(user.isSignedIn)
     return (
         <div>
             This is Log In

@@ -5,8 +5,7 @@ import Shop from './components/Shop/Shop';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 import NotFound from './components/NotFound/NotFound';
 import Review from './components/Review/Review';
@@ -20,6 +19,7 @@ export const UserContext = createContext()
 
 function App() {
   const [signedInUser, setSignedInUser] = useState({})
+  console.log(signedInUser)
   return (
    <UserContext.Provider value={[signedInUser, setSignedInUser]}>
     <Router>
