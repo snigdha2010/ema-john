@@ -1,3 +1,11 @@
+EMA-JOHN
+
+A simple dummy e-commer site like amazon using React, Mongodb, Bootstrap. 
+
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
