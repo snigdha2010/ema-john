@@ -14,8 +14,7 @@ const Inventory = () => {
         })
     }
     return (
-        <div>
-
+        <div className='text-center pt-5'>
             <form action='/addProduct' method="post">
               <p><span>Name:</span><input type="text" name="" id=""/></p>  
                 <br/>

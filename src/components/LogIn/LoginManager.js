@@ -2,6 +2,8 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 import firebaseConfig from '../../firebase.Config';
+import { Redirect, useHistory } from "react-router-dom";
+
 
 export const firebaseIntitalize = () =>{ 
     if(firebase.apps.length === 0){
@@ -94,20 +96,13 @@ firebase.auth().signInWithEmailAndPassword(email, password)
     }); 
 } 
 
-export const handleSignOut = () =>{
-    firebase.auth().signOut()
-    .then(function() {
-        const newUserInfo = {
-            isSignedIn:false,
-            name:'',
-            email: '', 
-            photo: ''
-        }
-        return newUserInfo
-        console.log('Sign-out successful.') 
-
+export const handleSignOut = () => {
+    return firebase.auth().signOut()
+      .then(() => {
+        sessionStorage.removeItem('token')
+        return null;
       })
-      .catch(function(error) {
-        // An error happened.
-      });
-}
+      .catch(error => {
+        console.log(error)
+      })
+  }

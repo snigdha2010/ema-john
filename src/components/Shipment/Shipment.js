@@ -9,7 +9,7 @@ import { useState } from 'react';
 const Shipment = () => {
     const { register, handleSubmit, watch, errors } = useForm();
 
-    const [signedInUser, setSignedInUser] = useContext(UserContext);
+    const {signedInUser, setSignedInUser} = useContext(UserContext);
     const [shippingdata, setShippingData] = useState(null);
     const onSubmit = data => {
      setShippingData(data)
@@ -46,8 +46,8 @@ const Shipment = () => {
         <div className= 'row'>
         <div style={{display: shippingdata? 'none':"block"}} className = 'col-md-6'>
                 
-            This is Shipment!!
-        <form onSubmit={handleSubmit(onSubmit)}>
+            <h2 className='text-center pt-5'>Shipment</h2>
+        <form className='ship-form' onSubmit={handleSubmit(onSubmit)}>
             <input name="name" defaultValue={signedInUser.name} ref={register({ required: true })} placeholder="Your Name" />
             {errors.name && <span className="error">Name is required</span>}
             <br/>

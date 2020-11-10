@@ -5,7 +5,7 @@ import Shop from './components/Shop/Shop';
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
 } from "react-router-dom";
 import NotFound from './components/NotFound/NotFound';
 import Review from './components/Review/Review';
@@ -14,14 +14,22 @@ import Shipment from './components/Shipment/Shipment';
 import LogIn from './components/LogIn/LogIn';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import Inventory from './components/Inventory/Inventory';
+import { handleSignOut } from './components/LogIn/LoginManager';
 
 export const UserContext = createContext()
 
 function App() {
   const [signedInUser, setSignedInUser] = useState({})
   console.log(signedInUser)
+  const googleSignOut = () =>{
+    handleSignOut()
+    .then(res => {
+      setSignedInUser(res)
+    })
+ }
+
   return (
-   <UserContext.Provider value={[signedInUser, setSignedInUser]}>
+   <UserContext.Provider value={{signedInUser, setSignedInUser,googleSignOut}}>
     <Router>
      <Header></Header>
      <Switch>

@@ -15,7 +15,7 @@ const LogIn = () => {
         password: '',
         photo: ''
     });
-    const [signedInUser, setSignedInUser] = useContext(UserContext);
+    const {signedInUser, setSignedInUser, googleSignOut} = useContext(UserContext);
     const history = useHistory();
     const location = useLocation();
     const { from } = location.state ||  { from: { pathname: "/" } };
@@ -72,12 +72,7 @@ const LogIn = () => {
     }
 
  
-    const signOut = () =>{
-       handleSignOut()
-       .then(res =>{
-        handleUpdate(res,false)
-       })
-    }
+    
     const handleUpdate = (res,redirect)=>{
         setUser(res);
         setSignedInUser(res);
@@ -87,11 +82,10 @@ const LogIn = () => {
     }
   // console.log(user.isSignedIn)
     return (
-        <div>
-            This is Log In
+        <div className='text-center pt-5'>
            <div>
                {
-                user.isSignedIn && user.isSignedIn? <button onClick={signOut}>Sign out</button> : 
+                user.isSignedIn && user.isSignedIn? <button onClick={googleSignOut}>Sign out</button> : 
                 <button onClick={googleSignin}>Sign in</button>
                }
                <br/>

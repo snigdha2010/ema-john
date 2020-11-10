@@ -43,7 +43,6 @@ const Review = () => {
     return (
         <div className='shop-container'>
             <div className='product-container'>
-                Review here
             {orderPlace && <img style={{width:'100%'}} src={gify} alt="" />  }
             { 
             item.map(pd=><CartReview
